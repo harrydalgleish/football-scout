@@ -225,7 +225,7 @@ def match_stats(match_id):
             pass
 
     
-    with open(f"data/raw/player_stats/{match_id}_player_stats.json", "w") as file:
+    with open(f"data/player_stats/{match_id}_player_stats.json", "w") as file:
         json.dump(players, file, indent=4)
 
 
