@@ -10,19 +10,31 @@ def sidebar():
         ),
         html.Label("Season"),
         dcc.Dropdown(
-            id="season"
+            id="season",
+            options=[]
         ),
         html.Label("Team"),
         dcc.Dropdown(
-            id="team"
+            id="team",
+            options=[]
         ),
         html.Label("Opposition"),
         dcc.Dropdown(
-            id="opposition"
+            id="opposition",
+            options=[]
         ),
         html.Label("Home/Away"),
         dcc.Dropdown(
-            id="HomeAway"
+            id="HomeAway",
+            options=[]
         )
 
-    ])
+    ],
+
+    style = {
+        "width":"300px",
+        "padding":"20px",
+        "backgroundColor":"#0B1F00"
+    }
+
+)
