@@ -277,6 +277,8 @@ def match_stats(match_id):
             players[player]['minutes'] = 90
         else:
             pass
+    for player in players:
+        print(players[player])
 
     
     with open(f"data/player_stats/{match_id}_player_stats.json", "w") as file:
