@@ -369,6 +369,12 @@ def visualise(match_id):
         counter = 0
         start = event["location"]
 
+        goalcheck = 0
+        if event_type == "Shot":
+            end = event["shot"]["end_location"]
+            if (event["shot"]["outcome"])["name"] == "Goal":
+                goalcheck = 1
+
         if event_type == "Pass":
             end = event["pass"]["end_location"]
 
@@ -379,8 +385,6 @@ def visualise(match_id):
             else:
                 end = event["clearance"]["end_location"]
 
-        elif event_type == "Shot":
-            end = event["shot"]["end_location"]
 
         elif event_type in ["Block", "Dribble", "Foul Committed", "Interception"]:
             end = start
@@ -403,10 +407,15 @@ def visualise(match_id):
             event["player"]["name"],
             fontsize=8
         )
-
-        ax.set_title(
-            f"{event['minute']}' - {event['player']['name']} - {event['type']['name']}"  
-        ) 
+        if goalcheck == 0:
+            ax.set_title(
+                f"{event['minute']}' - {event['player']['name']} - {event['type']['name']}"  
+            ) 
+        elif goalcheck == 1:
+            ax.set_title(
+                f"{event['minute']}' - {event['player']['name']} - {(event["shot"]["outcome"])["name"]}"
+            )
+            goalcheck = 0
 
     animation = FuncAnimation(
         fig,
