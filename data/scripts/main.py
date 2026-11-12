@@ -293,16 +293,62 @@ def arrowdecision(event_type):
     return arrowdict[event_type]
 
 def visualise(match_id):
+    combination = [True, True, True, True, True, True, True]
+    notable_events = []
+    #Input Separation
+    result = input("Do you want Passes to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[0] = False
+    result = input("Do you want Clearances to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[1] = False
+    result = input("Do you want Blocks to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[2] = False
+    result = input("Do you want Dribbles to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[3] = False
+    result = input("Do you want Fouls to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[4] = False
+    result = input("Do you want Interceptions to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[5] = False
+    result = input("Do you want Shots to be recorded? (Yes/No) ")
+    if result.upper() == "YES":
+        pass
+    else:
+        combination[6] = False
+
+    if combination[0]:
+        notable_events.append("Pass")
+    if combination[1]:
+        notable_events.append("Clearance")
+    if combination[2]:
+        notable_events.append("Block")
+    if combination[3]:
+        notable_events.append("Dribble")
+    if combination[4]:
+        notable_events.append("Foul Committed")
+    if combination[5]:
+        notable_events.append("Interception")
+    if combination[6]: 
+        notable_events.append("Shot")
     file = f"{match_id}.json"
     with open(f"/workspaces/football-scout/data/raw/events/{file}", "r") as file:
         match = json.load(file)
-    notable_events = ["Pass",
-                      "Clearance",
-                      "Block",
-                      "Dribble",
-                      "Foul Committed",
-                      "Interception",
-                      "Shot"]
     animation_events = [
         event for event in match
         if event["type"]["name"] in notable_events]
@@ -370,7 +416,28 @@ def visualise(match_id):
         repeat=False
     )
 
-    animation.save(f"/workspaces/football-scout/data/animations/{match_id}.gif", writer="pillow")
+    animation_name = f"{match_id}_"
+    wholegame = True
+    if combination[0]:
+        animation_name += "p"
+    if combination[1]:
+        animation_name += "c"
+    if combination[2]:
+        animation_name += "b"
+    if combination[3]:
+        animation_name += "d"
+    if combination[4]:
+        animation_name += "f"
+    if combination[5]:
+        animation_name += "i"
+    if combination[6]:
+        animation_name += "s"
+    for i in combination:
+        if i == False:
+            wholegame = False
+    if wholegame:
+        animation_name = match_id
+    animation.save(f"/workspaces/football-scout/data/animations/{animation_name}.gif", writer="pillow")
 
     plt.close(fig)
 
