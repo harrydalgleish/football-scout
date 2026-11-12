@@ -229,4 +229,4 @@ def match_stats(match_id):
         json.dump(players, file, indent=4)
 
 
-match_stats(3895292)
+match_stats(22912)

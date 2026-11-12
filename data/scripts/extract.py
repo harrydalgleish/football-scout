@@ -26,4 +26,4 @@ def download_events(match_id):
     with open(f"data/raw/events/{specific_file}", "w") as file:
         file.write(response.text)
 
-download_events(3895292)
+download_events(22912)
