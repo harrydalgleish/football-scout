@@ -354,8 +354,11 @@ def visualise(match_id):
         if event["type"]["name"] in notable_events]
     
 
-    pitch = Pitch(pitch_type="statsbomb")
+    pitch = Pitch(pitch_type="statsbomb", pitch_color="#4caf50", line_color="white")
     fig, ax = pitch.draw()
+
+    ax.set_xlim(0,120)
+    ax.set_ylim(0,80)
     
     def update(frame):
         ax.clear()
