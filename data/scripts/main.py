@@ -359,6 +359,8 @@ def visualise(match_id):
 
     ax.set_xlim(0,120)
     ax.set_ylim(0,80)
+    fig.canvas.draw()
+    fig.set_layout_engine(None)
     
     def update(frame):
         ax.clear()
@@ -408,7 +410,8 @@ def visualise(match_id):
             start[0],
             start[1] + 1,
             event["player"]["name"],
-            fontsize=8
+            fontsize=8,
+            horizontalalignment="right" if start[0] > 60 else "left"
         )
         if goalcheck == 0:
             ax.set_title(

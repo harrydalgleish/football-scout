@@ -1,4 +1,4 @@
-# football-scout
+# football-scout Author: Harry Dalgleish
 Scouting Project for football players
 
 Notes
